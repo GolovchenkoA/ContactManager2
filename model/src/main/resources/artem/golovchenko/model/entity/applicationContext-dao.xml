@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+
+              <property name="driverClassName" value="${}"/>
+              <property name="url" value=""/>
+              <property name="username" value=""/>
+              <property name="password" value=""/>
+       </bean>
+       <bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+              <property name="dataSource" ref="dataSource"/>
+              <property name="mappingResources">
+                      <list>
+                             <value>/artem/golovchenko/model/entity/Author.hbrn.xml</value>
+                             <value>/artem/golovchenko/model/entity/Book.hbrn.xml</value>
+                      </list>
+              </property>
+              <property name="hibernateProperties">
+                     <props>
+                            <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</prop>
+                     </props>
+              </property>
+       </bean>
+       <bean id="hibernateTransactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+              <property name="sessionFactory" ref="sessionFactory"/>
+       </bean>
+
+       <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+              <property name="location" value="artem/golovchenko/model/datasource.properties"/>
+       </bean>
+       <!--bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+              <property name="location" value="classpath:datasource.properties"/>
+       </bean-->
+</beans>

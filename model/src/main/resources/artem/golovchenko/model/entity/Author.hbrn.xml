@@ -1,0 +1,28 @@
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+        <hibernate-mapping package="artem.golovchenko.model.entity">
+        <class name="Author" table="author">
+            <id name="id" column="id">
+                <generator class="native"/>
+            </id>
+            <property name="firstName"/>
+            <property name="lastName"/>
+
+        </class>
+</hibernate-mapping>
+
+<!--?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-configuration SYSTEM "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+        <hibernate-configuration>
+        <session-factory>
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc</property>
+        <property name="hibernate.connection.url">jdbc:hsqldb:file:exampledb;shutdown=true</property>
+            <property name="hibernate.connection.username">admin</property>
+            <property name="hibernate.dialect">org.hibernate.dialect.HSQLDialect</property>
+            <property name="connection.password">password</property>
+            <property name="show_sql">true</property>
+            <mapping jar="hibernate-mappings.jar"/>
+            <mapping class="com.apress.hibernate.User"/>
+        </session-factory>
+</hibernate-configuration-->
